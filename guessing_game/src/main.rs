@@ -22,7 +22,7 @@ fn main() {
             Err(_) => {
                 println!("{} <- is not a number!!!", guess_string);
                 continue;
-            },
+            }
         };
 
         println!("You guessed: {}", guess_number);
