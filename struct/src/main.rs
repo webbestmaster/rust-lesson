@@ -29,6 +29,15 @@ impl Rectangle {
     }
 }
 
+#[derive(Debug)]
+enum TrafficLight {
+    Red1,
+    Yellow,
+    Green,
+}
+
+use TrafficLight::{Red1, Yellow};
+
 fn main() {
     let mut user1 = build_user(String::from("someone@example.com"),String::from("someusername123"));
     user1.email = String::from("anotheremail@example.com");
@@ -48,4 +57,12 @@ fn main() {
     println!("area of rect1 = {}", rect1.area());
     println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
     println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+
+    let red = Red1;
+    let yellow = Yellow;
+    let green = TrafficLight::Green;
+
+    println!("{:?}",red);
+    println!("{:?}",yellow);
+    println!("{:?}",green);
 }
