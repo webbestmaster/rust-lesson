@@ -1,4 +1,7 @@
 fn main() {
-    let tup: (i32, f64, u8) = (500, 6.4, 1);
-    println!("tup = {:?}", tup);
+    let a = [1, 2, 3, 4, 5];
+    let b: [u8; 5] = [1, 2, 3, 4, 50];
+    println!("a is: {:?}", a);
+    println!("b is: {:?}", b);
+    println!("b is: {:?}", b.len());
 }
