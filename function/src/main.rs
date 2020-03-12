@@ -33,6 +33,29 @@ fn main() {
 
 //    println!("The value of x is: {}", s1); // will not works!!!
     println!("The value of x is: {}", s2);
+
+    let hello = String::from("hello, Nik!");
+    let index = first_word(&hello);
+    println!("first word {}", index);
+
+    let s = String::from("hello");
+    let len = s.len();
+    println!("sting length = {}", len);
+    let slice = &s[3..len];
+    println!("{}", slice);
+    let slice = &s[3..];
+    println!("{}", slice);
+}
+
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
 }
 
 fn plus_one(x: &str) -> i32 {
