@@ -1,7 +1,9 @@
+fn to_vec(a: i32, b: i32) -> Vec<i32> {
+    vec![a, b]
+}
+
 fn main() {
-    let a = [1, 2, 3, 4, 5];
-    let b: [u8; 5] = [1, 2, 3, 4, 50];
-    println!("a is: {:?}", a);
-    println!("b is: {:?}", b);
-    println!("b is: {:?}", b.len());
+    let vec = to_vec(2, 3);
+
+    println!("vec {:?}", vec);
 }
