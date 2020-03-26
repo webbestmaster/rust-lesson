@@ -10,6 +10,8 @@ edition = "2018"
 actix-web = "2" # framework
 actix-rt = "1" # framework's mackros
 actix-files = "0.2.1" # framework's static files, file system
+actix-multipart = "0.2.0" # to upload files
+futures = "0.3.1" # to upload files
 
 #actix-cors = "0.2.0"
 #actix-web-static-files = "2.0"
@@ -18,7 +20,6 @@ actix-files = "0.2.1" # framework's static files, file system
 #actix-service = "1.0.0"
 #actix-multipart = "0.2.0"
 #bytes = "0.5.2"
-#futures = "0.3.1"
 #env_logger = "*"
 #
 #serde = { version = "1.0", features = ["derive"] }
