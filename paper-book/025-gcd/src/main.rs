@@ -2,8 +2,6 @@ use std::io::Write;
 use std::str::FromStr;
 use std::env;
 
-// TODO: research expect vs unwrap
-
 fn main() {
     let mut numbers = Vec::new();
 
@@ -24,8 +22,9 @@ fn main() {
         d = gcd(d, *m);
     }
 
-    println!("{}", gcd(234, 567));
     println!("Greatest common divisor of {:?} is {}", numbers, d);
+
+    println!("call gcd {}", gcd(234, 567));
 }
 
 fn gcd(mut n: u64, mut m: u64) -> u64 {
