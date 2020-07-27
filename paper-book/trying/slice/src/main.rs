@@ -1,8 +1,8 @@
-fn count(list: &[i32]) -> i32 {
+fn count<T>(list: &[T]) -> i32 {
     let mut counter: i32 = 0;
 
     for num in list {
-        counter += 1 + num;
+        counter += 1;
     }
 
     return counter;
@@ -12,7 +12,7 @@ fn count(list: &[i32]) -> i32 {
 fn main() {
     let int_list = vec!(1, 2, 3, 4, 5);
 
-    let list_length = count(&int_list);
+    let list_length = count::<i32>(&int_list);
 
     println!("{}", list_length);
 }
