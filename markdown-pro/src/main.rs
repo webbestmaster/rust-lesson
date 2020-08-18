@@ -7,5 +7,7 @@ fn main() {
         index: 1
     };
 
+    println!("{:?}", config);
+
     println!("Hello, world!");
 }
