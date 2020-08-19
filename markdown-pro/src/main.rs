@@ -1,7 +1,7 @@
 pub mod markdown;
 
 use markdown::markdown_struct::MarkdownConfigShallow;
-// use markdown::markdown_const::DEFAULT_MARKDOWN_CONFIG;
+use markdown::markdown_const::DEFAULT_MARKDOWN_CONFIG;
 use markdown::markdown_pro;
 
 fn main() {
@@ -16,7 +16,7 @@ fn main() {
         use_wrapper: Some(true),
     };
 
-    let html = markdown_pro();
+    let html = markdown_pro("# Markdown pro", DEFAULT_MARKDOWN_CONFIG);
 
     println!("html is here ---> {}", html);
 
