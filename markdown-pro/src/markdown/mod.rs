@@ -1,6 +1,6 @@
-pub mod markdownStruct;
-pub mod markdownConst;
+pub mod markdown_struct;
+pub mod markdown_const;
 
-pub fn markdownPro() -> String {
+pub fn markdown_pro() -> String {
     "me string".to_string()
 }
