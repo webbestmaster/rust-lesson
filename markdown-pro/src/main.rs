@@ -2,6 +2,7 @@ pub mod markdown;
 
 use markdown::markdownStruct::MarkdownConfigShallow;
 use markdown::markdownConst::default_markdown_config;
+use markdown::markdownPro;
 
 fn main() {
     let key_fn = | lang_name: &str, code: &str | -> String {
@@ -15,7 +16,9 @@ fn main() {
         use_wrapper: Some(true),
     };
 
-    // println!("{:?}", config);
+    let html = markdownPro();
+
+    println!("html is here ---> {}", html);
 
     println!("Hello, world!");
 }
