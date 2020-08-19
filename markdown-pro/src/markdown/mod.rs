@@ -1,4 +1,2 @@
-#[derive(Debug)]
-pub struct Config {
-    pub index: i32
-}
+pub mod markdownStruct;
+pub mod markdownConst;

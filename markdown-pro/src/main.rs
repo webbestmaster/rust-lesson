@@ -1,13 +1,21 @@
 pub mod markdown;
 
-use markdown::Config;
+use markdown::markdownStruct::MarkdownConfigShallow;
+use markdown::markdownConst::default_markdown_config;
 
 fn main() {
-    let config = Config {
-        index: 1
+    let key_fn = | lang_name: &str, code: &str | -> String {
+        "my str".to_string()
     };
 
-    println!("{:?}", config);
+    let config = MarkdownConfigShallow {
+        use_line_break: Some(false),
+        wrapper_class_name: Some("my_class"),
+        parse_link: None,
+        use_wrapper: Some(true),
+    };
+
+    // println!("{:?}", config);
 
     println!("Hello, world!");
 }
