@@ -18,3 +18,10 @@ $ cargo clippy --all-targets --all-features // run linter
 $ cargo clippy -- -D clippy::all // run linter
 ```
 
+
+
+Rust is installed now. Great!
+To get started you may need to restart your current shell.
+This would reload its PATH environment variable to include
+Cargo's bin directory (%USERPROFILE%\.cargo\bin).
+Press the Enter key to continue.
