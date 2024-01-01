@@ -2,7 +2,22 @@ use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
 
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: Box<usize>,
+}
+
 fn main() {
+    let person: Person = Person {
+        age: Box::new(12),
+        name: String::from("Peter"),
+    };
+
+    let Person { ref name, .. } = person;
+
+    println!("person {:?}", person);
+
     guessing_game();
 }
 
