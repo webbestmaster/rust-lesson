@@ -19,7 +19,6 @@ pub struct Snake {
 
 impl Snake {
     pub fn render(&mut self, args: &RenderArgs) {
-
         const RED: [f32; 4] = [1.0, 0.0, 0.0, 1.0];
 
         let squares: Vec<graphics::types::Rectangle> = self.snake_parts

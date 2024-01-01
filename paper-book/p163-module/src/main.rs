@@ -15,5 +15,4 @@ fn main() {
     let leave_item = plant::leave::Leave {};
 
     println!("{:?}", leave_item);
-
 }

@@ -49,9 +49,8 @@ fn guessing_game() {
             Ordering::Equal => {
                 println!("Equal");
                 break;
-            },
+            }
         }
-
     }
 
     // println!("You guessed: {guess}");

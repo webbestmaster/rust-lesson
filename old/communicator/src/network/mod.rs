@@ -1,4 +1,3 @@
-fn connect() {
-}
+fn connect() {}
 
 mod server;

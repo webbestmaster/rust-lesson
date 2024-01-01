@@ -5,7 +5,7 @@ use markdown::markdown_const::DEFAULT_MARKDOWN_CONFIG;
 use markdown::markdown_pro;
 
 fn main() {
-    let _key_fn = | _lang_name: &str, _code: &str | -> String {
+    let _key_fn = |_lang_name: &str, _code: &str| -> String {
         "my str".to_string()
     };
 

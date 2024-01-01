@@ -47,7 +47,7 @@ fn main() {
             None => {
                 println!(" {}", char_list_b.as_str());
                 break;
-            },
+            }
         };
     }
 }

@@ -23,7 +23,7 @@ async fn main() -> std::io::Result<()> {
         .await
 }
 
-async fn save_file(mut payload: Multipart) ->  Result<HttpResponse, Error>  {
+async fn save_file(mut payload: Multipart) -> Result<HttpResponse, Error> {
     // iterate over multipart stream
     while let Ok(Some(mut field)) = payload.try_next().await {
         let content_type = field.content_disposition().unwrap();

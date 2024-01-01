@@ -35,14 +35,14 @@ async fn main() -> std::io::Result<()> {
                     .route(web::post().to(extract_item)),
             )
 
-            /*
-            .data(web::JsonConfig::default().limit(4096))
-            .service(
-                web::resource("/file")
-                    .route(web::post().to(index3))
-                    .route(web::head().to(|| HttpResponse::MethodNotAllowed()))
-            )
-            */
+        /*
+        .data(web::JsonConfig::default().limit(4096))
+        .service(
+            web::resource("/file")
+                .route(web::post().to(index3))
+                .route(web::head().to(|| HttpResponse::MethodNotAllowed()))
+        )
+        */
 
         // .service(web::resource("/file").route(web::post().to(index3)))
     })
@@ -85,7 +85,7 @@ async fn extract_item(item: web::Json<MyObj>, req: HttpRequest) -> HttpResponse 
 }
 */
 
-async fn extract_item(mut payload: Multipart) ->  Result<HttpResponse, Error>  {
+async fn extract_item(mut payload: Multipart) -> Result<HttpResponse, Error> {
     // iterate over multipart stream
     while let Ok(Some(mut field)) = payload.try_next().await {
         let content_type = field.content_disposition().unwrap();

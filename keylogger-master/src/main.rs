@@ -21,7 +21,7 @@ const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 #[derive(Debug)]
 struct Config {
     device_file: String,
-    log_file: String
+    log_file: String,
 }
 
 impl Config {

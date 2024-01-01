@@ -4,6 +4,7 @@ struct User {
     sign_in_count: u64,
     active: bool,
 }
+
 fn build_user(email: String, username: String) -> User {
     User {
         email,
@@ -39,7 +40,7 @@ enum TrafficLight {
 use TrafficLight::{Red1, Yellow};
 
 fn main() {
-    let mut user1 = build_user(String::from("someone@example.com"),String::from("someusername123"));
+    let mut user1 = build_user(String::from("someone@example.com"), String::from("someusername123"));
     user1.email = String::from("anotheremail@example.com");
     let user2 = User {
         email: String::from("another@example.com"),
@@ -48,8 +49,8 @@ fn main() {
         sign_in_count: user1.sign_in_count,
     };
 
-    println!("[{};{};{};{}]", user1.username,user1.email,user1.active,user1.sign_in_count);
-    println!("[{};{};{};{}]", user2.username,user2.email,user2.active,user2.sign_in_count);
+    println!("[{};{};{};{}]", user1.username, user1.email, user1.active, user1.sign_in_count);
+    println!("[{};{};{};{}]", user2.username, user2.email, user2.active, user2.sign_in_count);
 
     let rect1 = Rectangle { length: 50, width: 30 };
     let rect2 = Rectangle { length: 40, width: 10 };
@@ -62,7 +63,7 @@ fn main() {
     let yellow = Yellow;
     let green = TrafficLight::Green;
 
-    println!("{:?}",red);
-    println!("{:?}",yellow);
-    println!("{:?}",green);
+    println!("{:?}", red);
+    println!("{:?}", yellow);
+    println!("{:?}", green);
 }

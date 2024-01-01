@@ -1,2 +1,1 @@
-fn connect() {
-}
+fn connect() {}

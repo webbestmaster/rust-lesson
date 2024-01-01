@@ -77,7 +77,7 @@ trait ModuloSigned {
 /// as well.
 impl<T> ModuloSigned for T
     where
-        T: std::ops::Add<Output = T> + std::ops::Rem<Output = T> + Clone,
+        T: std::ops::Add<Output=T> + std::ops::Rem<Output=T> + Clone,
 {
     fn modulo(&self, n: T) -> T {
         // Because of our trait bounds, we can now apply these operators.
@@ -224,7 +224,7 @@ impl Food {
         // since we implemented `From<GridPosition>` for `Rect` earlier.
         let rectangle =
             graphics::Mesh::new_rectangle(ctx, graphics::DrawMode::fill(), self.pos.into(), color)?;
-        graphics::draw(ctx, &rectangle, (ggez::mint::Point2 { x: 0.0, y: 0.0 },))
+        graphics::draw(ctx, &rectangle, (ggez::mint::Point2 { x: 0.0, y: 0.0 }, ))
     }
 }
 
@@ -274,7 +274,7 @@ impl Snake {
             last_update_dir: Direction::Right,
             body: body,
             ate: None,
-            next_dir: None
+            next_dir: None,
         }
     }
 
@@ -358,7 +358,7 @@ impl Snake {
                 seg.pos.into(),
                 [0.3, 0.3, 0.0, 1.0].into(),
             )?;
-            graphics::draw(ctx, &rectangle, (ggez::mint::Point2 { x: 0.0, y: 0.0 },))?;
+            graphics::draw(ctx, &rectangle, (ggez::mint::Point2 { x: 0.0, y: 0.0 }, ))?;
         }
         // And then we do the same for the head, instead making it fully red to distinguish it.
         let rectangle = graphics::Mesh::new_rectangle(
@@ -367,7 +367,7 @@ impl Snake {
             self.head.pos.into(),
             [1.0, 0.5, 0.0, 1.0].into(),
         )?;
-        graphics::draw(ctx, &rectangle, (ggez::mint::Point2 { x: 0.0, y: 0.0 },))?;
+        graphics::draw(ctx, &rectangle, (ggez::mint::Point2 { x: 0.0, y: 0.0 }, ))?;
         Ok(())
     }
 }

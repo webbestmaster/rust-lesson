@@ -1,7 +1,5 @@
-fn connect() {
-}
+fn connect() {}
 
 mod server {
-    fn connect() {
-    }
+    fn connect() {}
 }

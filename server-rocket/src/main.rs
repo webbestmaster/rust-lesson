@@ -1,6 +1,6 @@
-
 #![feature(proc_macro_hygiene, decl_macro)]
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
 
 use rocket::request::Form;
 use rocket::Data;
@@ -17,7 +17,7 @@ struct Task {
 }
 
 #[post("/file", data = "<task>")]
-fn new(task: Option<Form<Task>>)-> &'static str {
+fn new(task: Option<Form<Task>>) -> &'static str {
     "Hello, world!11"
 }
 

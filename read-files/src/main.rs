@@ -3,7 +3,6 @@ use std::fs;
 use std::thread;
 
 fn main() {
-
     let file_name = "./src/main.rs";
 
     let thread = thread::spawn(move || -> String {

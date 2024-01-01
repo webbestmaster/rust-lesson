@@ -9,15 +9,15 @@ fn main() {
 
 //    let result_config = Config::new(&args);
 
-/*
-    let config = match result_config {
-        Ok(value) => value,
-        Err(err) => {
-            println!("{}", err);
-            return ()
-        },
-    };
-*/
+    /*
+        let config = match result_config {
+            Ok(value) => value,
+            Err(err) => {
+                println!("{}", err);
+                return ()
+            },
+        };
+    */
 
     let config = Config::new(&args).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {}", err);

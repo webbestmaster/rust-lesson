@@ -1,6 +1,7 @@
 use std::cell::RefCell;
 
 pub mod man;
+
 type Man = man::Man;
 
 fn main() {

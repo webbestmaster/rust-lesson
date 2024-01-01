@@ -32,7 +32,7 @@ fn main() {
                 name: "Trinity".to_string(),
                 next: None,
             })));
-        },
+        }
         None => println!("none"),
     }
 

@@ -23,19 +23,19 @@ fn main() {
     let city_1 = City {
         name: "City A".to_string(),
         population: 1000,
-        country: "Country A".to_string()
+        country: "Country A".to_string(),
     };
 
     let city_2 = City {
         name: "City B".to_string(),
         population: 2000,
-        country: "Country B".to_string()
+        country: "Country B".to_string(),
     };
 
     let city_3 = City {
         name: "City C".to_string(),
         population: 3000,
-        country: "Country C".to_string()
+        country: "Country C".to_string(),
     };
 
     let mut city_list = vec!(city_2, city_1, city_3);

@@ -8,7 +8,7 @@ fn main() {
 
     let mut window: PistonWindow = WindowSettings::new(
         "piston: hello_world",
-        [500, 200]
+        [500, 200],
     )
         .exit_on_esc(true)
         .graphics_api(opengl)
@@ -32,7 +32,7 @@ fn main() {
                 "Hello world!",
                 &mut glyphs,
                 &c.draw_state,
-                transform, g
+                transform, g,
             ).unwrap();
 
             // Update glyphs before rendering.
