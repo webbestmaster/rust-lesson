@@ -1,24 +1,38 @@
-#[derive(Debug)]
-struct SomeStruct {
-    val: i32,
+struct Solution;
+
+impl Solution {
+    pub fn reverse_vowels(s: String) -> String {
+        let mut result: String = String::new();
+
+        let vowels = "aeiou";
+
+        let mut vowels_from_arg = String::new();
+
+        for c in s.chars() {
+            if vowels.contains(c) {
+                vowels_from_arg.push(c);
+            }
+        }
+
+        let mut vowels_from_arg_index = vowels_from_arg.len() - 1;
+
+        let vowel_chars = vowels_from_arg.chars().collect::<Vec<char>>();
+        let mut char_from_arg: &char;
+
+        for c in s.chars() {
+            if vowels.contains(c) {
+                char_from_arg = vowel_chars.get(vowels_from_arg_index).unwrap();
+                vowels_from_arg_index -= 1;
+                result.push(*char_from_arg);
+            } else {
+                result.push(c);
+            }
+        }
+
+        return result;
+    }
 }
 
 fn main() {
-    let mut arr:Vec<SomeStruct> = Vec::new();
-
-
-
-    arr.push(SomeStruct {val: 1});
-
-    let mm: &mut SomeStruct = arr.last_mut().unwrap();
-
-    mm.val = 2;
-
-    let mm1: &SomeStruct = arr.last().unwrap();
-
-
-    // let ff = arr[1];
-
-    // println!("{:?}", mm);
-    println!("{:?}", arr);
+    println!("{:?}", Solution::reverse_vowels("Hello".to_owned()));
 }
