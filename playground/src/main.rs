@@ -4,7 +4,7 @@ impl Solution {
     pub fn reverse_vowels(s: String) -> String {
         let mut result: String = String::new();
 
-        let vowels = "aeiou";
+        let vowels = "aeiouAEIOU";
 
         let mut vowels_from_arg = String::new();
 
