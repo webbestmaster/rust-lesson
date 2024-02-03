@@ -76,66 +76,6 @@ fn main() {
         Vec::from(['.', '#', '.', '#', '.']),
         Vec::from(['.', '#', '.', '#', '.']),
         Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
-        Vec::from(['.', '#', '.', '#', '.']),
         Vec::from(['.', '.', '.', '#', '.']),
         Vec::from(['.', '.', '.', '#', '.']),
     ]);
@@ -159,8 +99,11 @@ fn main() {
     let mut first_path = vec![Point(0, 0)];
     path_list.push(first_path);
 
+    let mut new_path_list: PathList = Vec::new();
+
     loop {
-        let mut new_path_list: PathList = Vec::new();
+        new_path_list.clear();
+
         // get all points from all pathes
         path_list.iter().for_each(|path: &Vec<Point>| {
             let last_point = match path.last() {
@@ -193,8 +136,6 @@ fn main() {
             })
             .collect::<PathList>();
 
-        // println!("new_path_list {:?}", new_path_list);
-
         if reached_path_list.len() > 0 {
             println!("reached_path_list {:?}", reached_path_list);
             break;
@@ -209,8 +150,8 @@ fn main() {
 
         println!("new_path_list {}", new_path_list.len());
 
-        new_path_list.into_iter().for_each(|path| {
-            path_list.push(path);
+        new_path_list.iter().for_each(|path| {
+            path_list.push(path.to_owned());
         });
     }
 }
