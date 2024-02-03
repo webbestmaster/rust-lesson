@@ -12,10 +12,15 @@ type Map = Vec<Vec<char>>;
 fn get_char_by_point(map: &Map, point: &Point) -> Option<char> {
     let &Point(x, y) = point;
 
-    let row_by_y: &Vec<char> = map.get(y as usize)?;
-    let char_by_x: &char = row_by_y.get(x as usize)?;
+    match (usize::try_from(x), usize::try_from(y)) {
+        (Ok(x_usize), Ok(y_usize)) => {
+            let row_by_y: &Vec<char> = map.get(y_usize)?;
+            let char_by_x: &char = row_by_y.get(x_usize)?;
 
-    Some(*char_by_x)
+            Some(*char_by_x)
+        }
+        _ => None,
+    }
 }
 
 fn get_is_forbidden_symbol(symbol: char) -> bool {
