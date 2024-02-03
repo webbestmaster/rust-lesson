@@ -22,7 +22,13 @@ fn get_is_forbidden_symbol(symbol: char) -> bool {
     return symbol == '#';
 }
 
-fn get_next_points(map: &Map, point: &Point) -> Vec<Point> {
+fn get_is_point_in_path_list(point: &Point, path_list: &PathList) -> bool {
+    return path_list.iter().any(|path| -> bool {
+        return path.contains(point);
+    });
+}
+
+fn get_next_points(map: &Map, path_list: &PathList, point: &Point) -> Vec<Point> {
     let &Point(x, y) = point;
 
     let points = Vec::from([
@@ -34,7 +40,17 @@ fn get_next_points(map: &Map, point: &Point) -> Vec<Point> {
     .into_iter()
     .filter(|point_in_filter: &Point| -> bool {
         return match get_char_by_point(&map, point_in_filter) {
-            Some(char_in_map) => !get_is_forbidden_symbol(char_in_map),
+            Some(char_in_map) => {
+                if get_is_forbidden_symbol(char_in_map) {
+                    return false;
+                }
+
+                if get_is_point_in_path_list(point_in_filter, path_list) {
+                    return false;
+                }
+
+                true 
+            },
             None => false,
         };
     })
@@ -46,6 +62,77 @@ fn get_next_points(map: &Map, point: &Point) -> Vec<Point> {
 fn main() {
     let map: Map = Vec::from([
         Vec::from(['.', '#', '.', '.', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
+        Vec::from(['.', '#', '.', '#', '.']),
         Vec::from(['.', '#', '.', '#', '.']),
         Vec::from(['.', '#', '.', '#', '.']),
         Vec::from(['.', '#', '.', '#', '.']),
@@ -62,17 +149,8 @@ fn main() {
 
     println!("map2 {:?}", map2);
 
-    let point_begin = Point(1, 1);
+    let point_begin = Point(2, 2);
     let point_end = Point(4, 4);
-
-    let dd = -2;
-
-    let p = get_char_by_point(&map, &Point(1, 1));
-    // println!("get_char_by_point {:?}", p);
-
-    let next_points = get_next_points(&map, &point_begin);
-
-    // println!("get_next_points {:?}", next_points);
 
     let mut new_points: Vec<Point> = Vec::new();
 
@@ -90,7 +168,7 @@ fn main() {
                 None => return,
             };
 
-            let new_points = get_next_points(&map, last_point);
+            let new_points = get_next_points(&map, &path_list, last_point);
 
             new_points.iter().for_each(|new_point| {
                 let mut cloned_path: Vec<Point> = path.clone();
@@ -121,6 +199,15 @@ fn main() {
             println!("reached_path_list {:?}", reached_path_list);
             break;
         }
+
+        if new_path_list.len() == 0 {
+            println!("can not get new_path_list {:?}", new_path_list);
+            break;
+        }
+
+        path_list.clear();
+
+        // println!("new_path_list {}", new_path_list.len());
 
         new_path_list.into_iter().for_each(|path| {
             path_list.push(path);
