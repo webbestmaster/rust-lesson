@@ -207,7 +207,7 @@ fn main() {
 
         path_list.clear();
 
-        // println!("new_path_list {}", new_path_list.len());
+        println!("new_path_list {}", new_path_list.len());
 
         new_path_list.into_iter().for_each(|path| {
             path_list.push(path);
