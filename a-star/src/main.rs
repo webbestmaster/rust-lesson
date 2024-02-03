@@ -1,6 +1,6 @@
-#![allow(dead_code)]
-#![allow(unused_variables)]
-#![allow(unused_mut)]
+// #![allow(dead_code)]
+// #![allow(unused_variables)]
+// #![allow(unused_mut)]
 
 #[derive(Debug, PartialEq, Clone)]
 struct Point(i32, i32);
@@ -15,23 +15,23 @@ fn get_char_by_point(map: &Map, point: &Point) -> Option<char> {
     let row_by_y: &Vec<char> = map.get(y as usize)?;
     let char_by_x: &char = row_by_y.get(x as usize)?;
 
-    return Some(*char_by_x);
+    Some(*char_by_x)
 }
 
 fn get_is_forbidden_symbol(symbol: char) -> bool {
-    return symbol == '#';
+    symbol == '#'
 }
 
 fn get_is_point_in_path_list(point: &Point, path_list: &PathList) -> bool {
-    return path_list.iter().any(|path| -> bool {
-        return path.contains(point);
-    });
+    return path_list
+        .iter()
+        .any(|path| -> bool { path.contains(point) });
 }
 
 fn get_next_points(map: &Map, path_list: &PathList, point: &Point) -> Vec<Point> {
     let &Point(x, y) = point;
 
-    let points = Vec::from([
+    Vec::from([
         Point(x - 1, y),
         Point(x + 1, y),
         Point(x, y - 1),
@@ -39,7 +39,7 @@ fn get_next_points(map: &Map, path_list: &PathList, point: &Point) -> Vec<Point>
     ])
     .into_iter()
     .filter(|point_in_filter: &Point| -> bool {
-        return match get_char_by_point(&map, point_in_filter) {
+        match get_char_by_point(map, point_in_filter) {
             Some(char_in_map) => {
                 if get_is_forbidden_symbol(char_in_map) {
                     return false;
@@ -49,14 +49,12 @@ fn get_next_points(map: &Map, path_list: &PathList, point: &Point) -> Vec<Point>
                     return false;
                 }
 
-                true 
-            },
+                true
+            }
             None => false,
-        };
+        }
     })
-    .collect::<Vec<Point>>();
-
-    return points;
+    .collect::<Vec<Point>>()
 }
 
 fn main() {
@@ -89,14 +87,15 @@ fn main() {
 
     println!("map2 {:?}", map2);
 
-    let point_begin = Point(2, 2);
+    // let point_begin = Point(2, 2);
+
     let point_end = Point(4, 4);
 
-    let mut new_points: Vec<Point> = Vec::new();
+    // let mut new_points: Vec<Point> = Vec::new();
 
     let mut path_list: PathList = Vec::new();
 
-    let mut first_path = vec![Point(0, 0)];
+    let first_path = vec![Point(0, 0)];
     path_list.push(first_path);
 
     let mut new_path_list: PathList = Vec::new();
@@ -129,26 +128,24 @@ fn main() {
                     None => return false,
                 };
 
-                return *last_point == point_end;
+                *last_point == point_end
             })
-            .map(|data| -> Vec<Point> {
-                return data.to_owned();
-            })
+            .map(|data| -> Vec<Point> { data.to_owned() })
             .collect::<PathList>();
 
-        if reached_path_list.len() > 0 {
+        if !reached_path_list.is_empty() {
             println!("reached_path_list {:?}", reached_path_list);
             break;
         }
 
-        if new_path_list.len() == 0 {
+        if new_path_list.is_empty() {
             println!("can not get new_path_list {:?}", new_path_list);
             break;
         }
 
         path_list.clear();
 
-        println!("new_path_list {}", new_path_list.len());
+        // println!("new_path_list {}", new_path_list.len());
 
         new_path_list.iter().for_each(|path| {
             path_list.push(path.to_owned());
