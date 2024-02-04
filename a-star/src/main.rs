@@ -100,7 +100,7 @@ fn main() {
 
     let mut path_list: PathList = Vec::new();
 
-    let first_path = vec![Point(0, 0)];
+    let first_path: Path = vec![Point(0, 0)];
     path_list.push(first_path);
 
     let mut new_path_list: PathList = Vec::new();
