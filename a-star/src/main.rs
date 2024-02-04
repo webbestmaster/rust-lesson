@@ -153,6 +153,6 @@ fn main() {
 
     println!("map2 {:?}", map2);
 
-    let short_path = get_short_path(&map, &Point(0, 0), &Point(4, 16));
+    let short_path: PathList = get_short_path(&map, &Point(0, 0), &Point(4, 16));
     println!("short_path {:?}", short_path);
 }
