@@ -1,38 +1,56 @@
-struct Solution;
+#[derive(Debug)]
+struct Sheep {}
 
-impl Solution {
-    pub fn reverse_vowels(s: String) -> String {
-        let mut result: String = String::new();
+#[derive(Debug)]
+struct Cow {}
 
-        let vowels = "aeiouAEIOU";
+trait Animal {
+    // Instance method signature
+    fn noise(&self) -> &'static str;
+}
 
-        let mut vowels_from_arg = String::new();
+trait Animal2 {
+    // Instance method signature
+    fn noise2(&self) -> &'static str;
+}
 
-        for c in s.chars() {
-            if vowels.contains(c) {
-                vowels_from_arg.push(c);
-            }
-        }
+// Implement the `Animal` trait for `Sheep`.
+impl Animal for Sheep {
+    fn noise(&self) -> &'static str {
+        "baaaaah!"
+    }
+}
 
-        let mut vowels_from_arg_index = vowels_from_arg.len() - 1;
+impl Animal2 for Sheep {
+    fn noise2(&self) -> &'static str {
+        "baaaaah!"
+    }
+}
 
-        let vowel_chars = vowels_from_arg.chars().collect::<Vec<char>>();
-        let mut char_from_arg: &char;
+// Implement the `Animal` trait for `Cow`.
+impl Animal for Cow {
+    fn noise(&self) -> &'static str {
+        "moooooo!"
+    }
+}
 
-        for c in s.chars() {
-            if vowels.contains(c) {
-                char_from_arg = vowel_chars.get(vowels_from_arg_index).unwrap();
-                vowels_from_arg_index -= 1;
-                result.push(*char_from_arg);
-            } else {
-                result.push(c);
-            }
-        }
+impl Animal2 for Cow {
+    fn noise2(&self) -> &'static str {
+        "moooooo!"
+    }
+}
 
-        return result;
+// Returns some struct that implements Animal, but we don't know which one at compile time.
+fn random_animal(random_number: f64) -> Box<dyn Animal2> {
+    if random_number < 0.5 {
+        Box::new(Sheep {})
+    } else {
+        Box::new(Cow {})
     }
 }
 
 fn main() {
-    println!("{:?}", Solution::reverse_vowels("Hello".to_owned()));
+    let random_number = 0.234;
+    let animal = random_animal(random_number);
+    println!("You've randomly chosen an animal, and it says {:?}", animal);
 }
