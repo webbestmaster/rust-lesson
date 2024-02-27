@@ -1,21 +1,11 @@
-use serde::{Deserialize, Serialize};
+// pub mod my_mod {
 use wasm_bindgen::prelude::*;
 
-#[derive(Clone, Debug, PartialEq, Deserialize, Serialize)]
-#[wasm_bindgen]
-pub struct Point {
-    x: i32,
-    y: i32,
-}
-
-#[derive(Clone, Debug, Deserialize, Serialize)]
-#[wasm_bindgen]
-struct MovePath {
-    point_list: Vec<Point>,
-    rest_move: i32,
-}
-
-type Landscape = Vec<Vec<i32>>;
+mod constant;
+use constant::{
+    constant_inner::{Landscape, DEFAULT_IMPOSSIBLE_POINT},
+    MovePath, Point,
+};
 
 fn get_point_value_on_landscape(point: &Point, landscape: &Landscape) -> Option<i32> {
     let Point { x, y } = point;
@@ -53,8 +43,6 @@ fn get_available_close_point(start: &Point, move_size: i32, landscape: &Landscap
         )
         .collect::<Vec<Point>>()
 }
-
-static DEFAULT_IMPOSSIBLE_POINT: Point = Point { x: -100, y: -100 };
 
 fn make_new_path_list(move_path: &MovePath, landscape: &Landscape) -> Vec<MovePath> {
     let last_point_in_list: &Point = move_path
@@ -143,21 +131,17 @@ fn get_available_move_path_list_recursive(
     get_available_move_path_list_recursive(updated_path_list_to_expand, stored_path_list, landscape)
 }
 
-fn vec_to_landscape(landscape_in_one_line: &Vec<i32>, landscape_width: i32) -> Landscape {
-    let landscape_width_usize = usize::try_from(landscape_width).unwrap_or(landscape_in_one_line.len());
+fn vec_to_landscape(landscape_in_one_line: &[i32], landscape_width: i32) -> Landscape {
+    let landscape_width_usize =
+        usize::try_from(landscape_width).unwrap_or(landscape_in_one_line.len());
 
     landscape_in_one_line
-        // .split(",")
-        // .map(|map_shunk| {
-        //     map_shunk.trim().parse::<i32>().unwrap()
-        // })
-        // .collect::<Vec<i32>>()
         .chunks(landscape_width_usize)
         .map(|chunk| chunk.to_owned())
         .collect::<Vec<Vec<i32>>>()
 }
 
-#[wasm_bindgen]
+#[wasm_bindgen(js_name=getAvailableMovePathList)]
 pub fn get_available_move_path_list(
     start_x: i32,
     start_y: i32,
@@ -170,7 +154,7 @@ pub fn get_available_move_path_list(
     let landscape: Landscape = vec_to_landscape(&landscape_in_one_line, landscape_width);
     let start: Point = Point {
         x: start_x,
-        y: start_y
+        y: start_y,
     };
 
     let move_path_list = get_available_move_path_list_recursive(
@@ -185,19 +169,6 @@ pub fn get_available_move_path_list(
     serde_wasm_bindgen::to_value(&move_path_list).unwrap()
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let start = Point { x: 2, y: 2 };
-
-        let move_size: i32 = 3;
-        let landscape: String = String::from("1, 2, 3, 2, 1, 1, 1, 3, 2, 1, 1, 2, 3, 2, 1, 1, 2, 3, 2, 1, 1, 2, 3, 2, 1");
-
-        let result = get_available_move_path_list(start.x, start.y, move_size, &landscape, 5);
-
-        print!("{:?}", result);
-    }
-}
+// pub fn sum(a: i32, b: i32) -> i32 {
+//     a + b
+// }
